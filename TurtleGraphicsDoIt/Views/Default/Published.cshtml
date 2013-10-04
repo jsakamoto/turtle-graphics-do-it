@@ -1,0 +1,14 @@
+﻿@model TurtleGraphicsDoIt.Models.ViewModel
+@{
+    ViewBag.Title = "Published";
+}
+
+<h2>Published</h2>
+
+<div class="screen-pane">
+    <img src="@Model.GraphicDataURL" alt="graphic" />
+</div>
+
+<div class="editor-pane">
+<pre>@Model.Code</pre>
+</div>
