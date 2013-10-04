@@ -14,7 +14,7 @@
         return degree * Math.PI / 180;
     };
 
-    var moveTo = function (distance) {
+    var move = function (distance) {
         var fn = isPenDown ? ctx.lineTo : ctx.moveTo;
         ctx.moveTo(x, y);
         var rad = toRad(degree);
@@ -24,11 +24,8 @@
         ctx.stroke();
     };
 
-    var turnLeft = function (delta) {
+    var turn = function (delta) {
         degree = (degree + delta) % 360.0;
-    }
-    var turnRight = function (delta) {
-        degree = (360.0 + degree - delta) % 360.0;
     }
 
     var penUp = function () {
@@ -39,9 +36,8 @@
     }
 
     var turtle = {
-        'moveTo': moveTo,
-        'turnLeft': turnLeft,
-        'turnRight': turnRight,
+        'move': move,
+        'turn': turn,
         'penUp': penUp,
         'penDown': penDown
     };
