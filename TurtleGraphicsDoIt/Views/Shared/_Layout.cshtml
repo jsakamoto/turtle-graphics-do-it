@@ -1,0 +1,25 @@
+﻿@using TurtleGraphicsDoIt
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <h1>@Localize.SiteName</h1>
+        <nav>
+            @RenderSection("Navigations", required: false)
+        </nav>
+    </header>
+
+    <div class="main-content">
+        @RenderBody()
+    </div>
+
+    <script src="~/Scripts/jquery-2.0.3.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿* {
+    font-size: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, header {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #444;
+    color: white;
+    padding: 0.5em 1em 0.5em 1em;
+}
+
+h1 {
+    font-size: 120%;
+    display: inline-block;
+}
+
+header nav {
+    float: right;
+}
+
+a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+.main-content {
+    margin: 1em;
+}
+
+/* Index */
+canvas, .screen-pane img {
+    box-shadow: 1px 1px 6px #444;
+}
+
+.screen-pane {
+    float: left;
+    margin: 0 1em 1em 0;
+}
+
+#code-area {
+    width: 38em;
+    height: 20em;
+    font-family:Consolas, monospace;
+}
+
+.editor-pane {
+    display: inline-block;
+}
+.actions a {
+    background-color:#0094ff;
+    color:white;
+    padding:0.3em 1em 0.3em 1em;
+    display: inline-block;
+}
