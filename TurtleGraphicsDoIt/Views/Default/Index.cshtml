@@ -1,6 +1,10 @@
 ﻿@{
     ViewBag.Title = "Home";
 }
+@section Head {
+    <link href="~/Content/codemirror-3.01/codemirror.css" rel="stylesheet" />
+}
+
 @section Navigations {
     <div>
         <a href="#" class="action-publish" id="btn-publish">Publish</a>
@@ -8,24 +12,25 @@
 }
 
 <div class="screen-pane">
-    <canvas id="canvas" width="620" height="320"></canvas>
+    <canvas id="canvas" width="400" height="400"></canvas>
 </div>
 
 <div class="editor-pane">
     @using (Html.BeginForm("Publish", "Default"))
     {
         <textarea id="code-area"
-                  name="code"
-                  autofocus
-                  placeholder="Enter JavaScript code here. ex) turtle.move(100); turtle.turn(90); turtle.penUp(); turtle.penDown();"></textarea>
+            name="code"
+            autofocus
+            placeholder="Enter JavaScript code here. ex) turtle.move(100); turtle.turn(90); turtle.penUp(); turtle.penDown();"></textarea>
         <input type="hidden" id="graphic-data-URL" name="GraphicDataURL" value="" />
     }
     <div class="actions">
         <a href="#" id="btn-run">Run</a>
     </div>
 </div>
-
 @section Scripts {
+    <script src="~/Scripts/codemirror-3.01/codemirror.js"></script>
+    <script src="~/Scripts/codemirror-3.01/mode/javascript.js"></script>
     <script src="~/turtle-graphics.js"></script>
     <script src="~/turtle-graphics-doit.js"></script>
 }

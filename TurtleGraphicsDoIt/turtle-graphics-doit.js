@@ -5,16 +5,19 @@
     var context = canvas.getContext('2d');
     context.width = parseInt(canvas.width);
     context.heigt = parseInt(canvas.height);
-
     window.turtle = new TurtleClass(context);
 
+    var codeEditor = CodeMirror.fromTextArea(document.getElementById('code-area'));
+    
     var run = function () {
         context.beginPath();
         context.clearRect(0, 0, context.width, context.heigt);
         context.closePath();
         window.turtle.reset();
 
-        var code = $('#code-area').val();
+        var code = codeEditor.getValue();
+            //$('#code-area').val();
+        console.log("code is: " + code);
         (function (window, $) {
             eval(code);
         })(null, null);
@@ -32,4 +35,5 @@
         $('#graphic-data-URL').val(canvas.toDataURL());
         $('form').submit();
     });
+
 })(window, jQuery);

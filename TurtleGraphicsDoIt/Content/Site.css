@@ -20,6 +20,9 @@ h1 {
     font-size: 120%;
     display: inline-block;
 }
+header h1{
+    color:#fff;
+}
 
 header nav {
     float: right;
@@ -40,7 +43,7 @@ a {
 }
 
 /* Index */
-canvas, .screen-pane img {
+canvas, .screen-pane img, .thumbnail {
     box-shadow: 1px 1px 6px #444;
 }
 

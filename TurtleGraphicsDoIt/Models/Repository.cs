@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.WindowsAzure.Storage.Table.DataServices;
 
 namespace TurtleGraphicsDoIt.Models
@@ -42,6 +43,15 @@ namespace TurtleGraphicsDoIt.Models
                 .Where(e => e.PartitionKey == codeid.PartitionKey && e.RowKey == codeid.RowKey)
                 .FirstOrDefault();
             return entity;
+        }
+
+        public IEnumerable<string> GetAllRowKeys()
+        {
+            return _Context
+                .CreateQuery<TableEntity>(_TableName)
+                .ToList()
+                .OrderByDescending(e => e.Timestamp)
+                .Select(e => e.RowKey);
         }
 
         public void Dispose()
