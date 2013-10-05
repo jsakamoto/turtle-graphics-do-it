@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CacheableContentResult">
+      <HintPath>..\packages\CacheableContentResult.1.0.0.0\lib\net40\CacheableContentResult.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -132,6 +135,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\PublishedController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -151,9 +155,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\codemirror-3.01\codemirror.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\codemirror-3.01\codemirror.js" />
+    <Content Include="Scripts\codemirror-3.01\mode\css.js" />
+    <Content Include="Scripts\codemirror-3.01\mode\htmlmixed.js" />
+    <Content Include="Scripts\codemirror-3.01\mode\javascript.js" />
+    <Content Include="Scripts\codemirror-3.01\mode\xml.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <None Include="Scripts\_references.js" />
@@ -172,7 +182,8 @@
     <Content Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Default\Published.cshtml" />
+    <Content Include="Views\Published\Detail.cshtml" />
+    <Content Include="Views\Published\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,17 @@
+﻿@model System.Collections.Generic.IEnumerable<string>
+@{
+    ViewBag.Title = "Published";
+}
+
+<h2>Published</h2>
+
+<ul>
+    @foreach (var rowkey in Model)
+    {
+        <li>
+            <a href="@Url.Action("Detail", new { id = rowkey })">
+            <img src="@Url.Action("Thumbnail", new { id = rowkey })" class="thumbnail" />
+            </a>
+        </li>
+    }
+</ul>
