@@ -20,8 +20,9 @@ h1 {
     font-size: 120%;
     display: inline-block;
 }
-header h1{
-    color:#fff;
+
+header h1 {
+    color: #fff;
 }
 
 header nav {
@@ -55,15 +56,23 @@ canvas, .screen-pane img, .thumbnail {
 #code-area {
     width: 38em;
     height: 20em;
-    font-family:Consolas, monospace;
+    font-family: Consolas, monospace;
 }
 
 .editor-pane {
     display: inline-block;
 }
+
 .actions a {
-    background-color:#0094ff;
-    color:white;
-    padding:0.3em 1em 0.3em 1em;
+    background-color: #0094ff;
+    color: white;
+    padding: 0.3em 1em 0.3em 1em;
     display: inline-block;
+}
+
+/* Published */
+.published-list li {
+    list-style: none;
+    display: inline-block;
+    margin: 1em;
 }
