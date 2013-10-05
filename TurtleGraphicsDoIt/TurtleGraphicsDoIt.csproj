@@ -155,15 +155,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="Content\codemirror-3.01\codemirror.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
-    <Content Include="Scripts\codemirror-3.01\codemirror.js" />
-    <Content Include="Scripts\codemirror-3.01\mode\css.js" />
-    <Content Include="Scripts\codemirror-3.01\mode\htmlmixed.js" />
-    <Content Include="Scripts\codemirror-3.01\mode\javascript.js" />
-    <Content Include="Scripts\codemirror-3.01\mode\xml.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <None Include="Scripts\_references.js" />

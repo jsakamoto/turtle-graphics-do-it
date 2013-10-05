@@ -7,16 +7,13 @@
     context.heigt = parseInt(canvas.height);
     window.turtle = new TurtleClass(context);
 
-    var codeEditor = CodeMirror.fromTextArea(document.getElementById('code-area'));
-    
     var run = function () {
         context.beginPath();
         context.clearRect(0, 0, context.width, context.heigt);
         context.closePath();
         window.turtle.reset();
 
-        var code = codeEditor.getValue();
-            //$('#code-area').val();
+        var code = $('#code-area').val();
         console.log("code is: " + code);
         (function (window, $) {
             eval(code);
@@ -28,12 +25,10 @@
         run();
     });
 
-
     $('#btn-publish').click(function (e) {
         e.preventDefault();
         run();
         $('#graphic-data-URL').val(canvas.toDataURL());
         $('form').submit();
     });
-
 })(window, jQuery);
