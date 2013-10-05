@@ -3,14 +3,6 @@
     ViewBag.Title = "Home";
     var code = Model != null ? Model.Code : "";
 }
-@section Head {
-}
-
-@section Navigations {
-    <div>
-        <a href="#" class="action-publish" id="btn-publish">Publish</a>
-    </div>
-}
 
 <div class="screen-pane">
     <canvas id="canvas" width="400" height="400"></canvas>
@@ -26,7 +18,8 @@
         <input type="hidden" id="graphic-data-URL" name="GraphicDataURL" value="" />
     }
     <div class="actions">
-        <a href="#" id="btn-run">Run</a>
+        <a href="#" class="action-run" id="btn-run">Run</a>
+        <a href="#" class="action-publish" id="btn-publish">Publish</a>
     </div>
 </div>
 @section Scripts {

@@ -1,9 +1,10 @@
 ﻿@model System.Collections.Generic.IEnumerable<string>
 @{
-    ViewBag.Title = "Published";
+    ViewBag.Title = "List of published";
+    ViewBag.BodyCssClass = "list-of-published";
 }
 
-<h2>Published</h2>
+<h2>@ViewBag.Title</h2>
 
 <ul class="published-list">
     @foreach (var rowkey in Model)

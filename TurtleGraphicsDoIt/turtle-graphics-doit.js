@@ -60,6 +60,7 @@
 
     $('#btn-publish').click(function (e) {
         e.preventDefault();
+        if (confirm('Sure?') == false) return;
         run();
         $('#graphic-data-URL').val(canvas.toDataURL());
         $('form').submit();

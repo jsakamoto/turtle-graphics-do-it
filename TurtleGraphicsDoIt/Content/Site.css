@@ -66,13 +66,40 @@ canvas, .screen-pane img, .thumbnail {
 .actions a {
     background-color: #0094ff;
     color: white;
-    padding: 0.3em 1em 0.3em 1em;
+    padding: 0.5em 1em 0.5em 1em;
     display: inline-block;
 }
 
+.actions a, nav a {
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    padding-left: 38px;
+}
+
+.action-run {
+    background-image: url(images/play.png);
+}
+
+.action-publish {
+    background-image: url(images/upload.png);
+}
+
+.action-view-published {
+    background-image: url(images/list.png);
+}
+
 /* Published */
+.list-of-published .action-view-published {
+    display: none;
+}
+
 .published-list li {
     list-style: none;
     display: inline-block;
     margin: 1em;
+}
+
+.published-list img {
+    width: 120px;
+    height: 120px;
 }
