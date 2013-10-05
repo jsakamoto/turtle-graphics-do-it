@@ -1,9 +1,11 @@
 ﻿@model TurtleGraphicsDoIt.Models.ViewModel
+@using TurtleGraphicsDoIt
 @{
-    ViewBag.Title = "Published";
     var rowKey = this.ViewContext.RouteData.Values["id"];
+    ViewBag.Title = "Published";
+    ViewBag.OgpUrl = Request.Url.AbsoluteUri;
+    ViewBag.OgpImageUrl = Url.AppUrl() + Url.Action("Thumbnail", new { id = rowKey });
 }
-
 <h2>Published</h2>
 
 <div class="screen-pane">
@@ -11,6 +13,10 @@
 </div>
 
 <div class="editor-pane">
+    <div class="social-buttons">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="tgdoit">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </div>
     <pre id="code-area">@Model.Code</pre>
     <div class="actions">
         <a href="@Url.Action("Index", "Default", new { id = rowKey })" id="btn-clone">Clone</a>

@@ -61,6 +61,15 @@ namespace TurtleGraphicsDoIt {
         }
         
         /// <summary>
+        ///   &quot;Turtle Graphics Do It&quot; is the web application to draw a Turtle Graphics using JavaScript, and, share the code and graphic. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Turtle Graphics Do It に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SiteName {

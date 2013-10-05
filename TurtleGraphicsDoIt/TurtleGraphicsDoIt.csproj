@@ -135,6 +135,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\UrlHelperExtension.cs" />
     <Compile Include="Controllers\PublishedController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Global.asax.cs">
@@ -156,6 +157,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\Images\list.png" />
+    <Content Include="Content\Images\ogpimage.png" />
     <Content Include="Content\Images\play.png" />
     <Content Include="Content\Images\upload.png" />
     <Content Include="Content\Site.css" />

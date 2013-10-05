@@ -1,11 +1,21 @@
 ﻿@using TurtleGraphicsDoIt
-<!DOCTYPE html>
+@{
+    ViewBag.OgpUrl = ViewBag.OgpUrl ?? Url.AppUrl();
+    ViewBag.OgpImageUrl = ViewBag.OgpImageUrl ?? Url.AppUrl() + "/Content/images/ogpimage.png";
+}<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>@Localize.SiteName - @ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <meta name="twitter:card" content="summary">
+    <meta property="og:title" content="@Localize.SiteName" />
+    <meta property="og:description" content="@Localize.Description" />
+    <meta property="og:url" content="@ViewBag.OgpUrl" />
+    <meta property="og:image" content="@ViewBag.OgpImageUrl" />
+    <meta name="keywords" content="turtlegraphic" />
+    <meta name="description" content="@Localize.Description" />
     @RenderSection("Head", required: false)
 </head>
 <body class="@ViewBag.BodyCssClass">
