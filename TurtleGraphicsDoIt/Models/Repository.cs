@@ -14,7 +14,7 @@ namespace TurtleGraphicsDoIt.Models
     {
         protected const string _TableName = "codes";
 
-        protected TableServiceContext _Context;
+        protected CloudTable _TableRef;
 
         public Repository()
         {
@@ -25,45 +25,37 @@ namespace TurtleGraphicsDoIt.Models
                 appSettings["StorageAccount.Key"]);
             var storageAccount = new CloudStorageAccount(credentials, useHttps: true);
             var tableClient = storageAccount.CreateCloudTableClient();
-            var tableRef = tableClient.GetTableReference(_TableName);
-            tableRef.CreateIfNotExists();
-            _Context = tableClient.GetTableServiceContext();
+            _TableRef = tableClient.GetTableReference(_TableName);
+            _TableRef.CreateIfNotExists();
         }
 
         public void Add(Entity entity)
         {
-            var exists = _Context
-                .CreateQuery<TableEntity>(_TableName)
-                .Where(e => e.PartitionKey == entity.PartitionKey && e.RowKey == entity.RowKey)
-                .FirstOrDefault();
-            if (exists == null)
+            var op = TableOperation.Retrieve(entity.PartitionKey, entity.RowKey);
+            var result = _TableRef.Execute(op);
+            if (result.Result == null)
             {
-                _Context.AddObject(_TableName, entity);
-                _Context.SaveChanges();
+                _TableRef.Execute(TableOperation.Insert(entity));
             }
         }
 
         public Entity Find(CodeId codeid)
         {
-            var entity = _Context
-                .CreateQuery<Entity>(_TableName)
-                .Where(e => e.PartitionKey == codeid.PartitionKey && e.RowKey == codeid.RowKey)
-                .FirstOrDefault();
-            return entity;
+            var op = TableOperation.Retrieve<Entity>(codeid.PartitionKey, codeid.RowKey);
+            var result = _TableRef.Execute(op);
+            return result.Result as Entity;
         }
 
         public IEnumerable<string> GetAllRowKeys()
         {
-            return _Context
-                .CreateQuery<TableEntity>(_TableName)
-                .ToList()
-                .OrderByDescending(e => e.Timestamp)
-                .Select(e => e.RowKey);
+            var query = new TableQuery().Select(new string[] { });
+            return _TableRef
+                .ExecuteQuery(query)
+                .Select(a => a.RowKey);
         }
 
         public void Dispose()
         {
-            if (_Context != null) _Context.Dispose();
         }
     }
 }

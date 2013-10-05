@@ -7,7 +7,7 @@ using Microsoft.WindowsAzure.Storage.Table.DataServices;
 
 namespace TurtleGraphicsDoIt.Models
 {
-    public class Entity : TableServiceEntity
+    public class Entity : TableEntity
     {
         public byte[] CodeAsBytes { get; set; }
 

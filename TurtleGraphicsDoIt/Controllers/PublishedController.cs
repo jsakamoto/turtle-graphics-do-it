@@ -39,10 +39,13 @@ namespace TurtleGraphicsDoIt.Controllers
 
         public ActionResult Thumbnail(string id)
         {
-            var entity = this.Repository.Find(CodeId.FromRowKey(id));
-            if (entity == null) return new EmptyResult();
-            return new FileContentResult(entity.Thumbnail, "image/png");
-            //return new CacheableContentResult("image/png", () => entity.Graphic, entity.Timestamp, entity.RowKey);
+            return new CacheableContentResult("image/png", () =>
+                {
+                    var entity = this.Repository.Find(CodeId.FromRowKey(id));
+                    return entity != null ? entity.Thumbnail : new byte[0];
+                },
+                cacheability: HttpCacheability.ServerAndPrivate,
+                etag: id);
         }
 
         protected override void Dispose(bool disposing)
