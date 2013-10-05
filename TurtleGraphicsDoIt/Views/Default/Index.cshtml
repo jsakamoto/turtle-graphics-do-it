@@ -1,5 +1,7 @@
-﻿@{
+﻿@model TurtleGraphicsDoIt.Models.ViewModel
+@{
     ViewBag.Title = "Home";
+    var code = Model != null ? Model.Code : "";
 }
 @section Head {
 }
@@ -20,7 +22,7 @@
         <textarea id="code-area"
             name="code"
             autofocus
-            placeholder="Enter JavaScript code here. ex) turtle.move(100); turtle.turn(90); turtle.penUp(); turtle.penDown();"></textarea>
+            placeholder="Enter JavaScript code here. ex) turtle.move(100); turtle.turn(90); turtle.penUp(); turtle.penDown();">@code</textarea>
         <input type="hidden" id="graphic-data-URL" name="GraphicDataURL" value="" />
     }
     <div class="actions">

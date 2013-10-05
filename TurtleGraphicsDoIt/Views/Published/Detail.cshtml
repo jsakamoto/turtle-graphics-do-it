@@ -1,6 +1,7 @@
 ﻿@model TurtleGraphicsDoIt.Models.ViewModel
 @{
     ViewBag.Title = "Published";
+    var rowKey = this.ViewContext.RouteData.Values["id"];
 }
 
 <h2>Published</h2>
@@ -10,5 +11,8 @@
 </div>
 
 <div class="editor-pane">
-<pre>@Model.Code</pre>
+    <pre id="code-area">@Model.Code</pre>
+    <div class="actions">
+        <a href="@Url.Action("Index", "Default", new { id = rowKey })" id="btn-clone">Clone</a>
+    </div>
 </div>

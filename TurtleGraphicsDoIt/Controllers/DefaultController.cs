@@ -21,9 +21,20 @@ namespace TurtleGraphicsDoIt.Controllers
             this.Repository = new Repository();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            return View();
+            var model = default(ViewModel);
+            if (string.IsNullOrWhiteSpace(id) == false)
+            {
+                var entity = this.Repository.Find(CodeId.FromRowKey(id));
+                if (entity != null)
+                {
+                    model = new ViewModel { 
+                        Code = Encoding.UTF8.GetString(entity.CodeAsBytes)
+                    };
+                }
+            }
+            return View(model);
         }
 
         public ActionResult Publish(ViewModel model)
