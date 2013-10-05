@@ -47,7 +47,6 @@
         window.turtle.reset();
 
         var code = $('#code-area').val();
-        console.log("code is: " + code);
         (function (window, $) {
             eval(code);
         })(null, null);
@@ -90,7 +89,7 @@
 
         var newleft = ('\n' + left).replace(/^([\s\S]*\n)([ ]+)$/,
             function (all, head, indent) {
-                var newindent = Array(parseInt(Math.max(0, indent.length - 1) / 4)*4 + 1).join(' ');
+                var newindent = Array(parseInt(Math.max(0, indent.length - 1) / 4) * 4 + 1).join(' ');
                 return [head, newindent].join('');
             }).substring(1);
         $this.val(newleft + right).caret(newleft.length);
@@ -112,11 +111,7 @@
         .keydown(function (e) {
             $this = $(this);
 
-            if (e.altKey == true && e.keyCode == "R".charCodeAt(0)) {
-                e.preventDefault();
-                run();
-            }
-            else if (e.keyCode == 13/*Enter*/) {
+            if (e.keyCode == 13/*Enter*/) {
                 keyEnter(e, $this);
             }
             else if (e.keyCode == 9/*Tab*/) {
@@ -132,5 +127,11 @@
             }
         });
 
+    $(document).keydown(function (e) {
+        if (e.altKey == true && e.keyCode == "R".charCodeAt(0)) {
+            e.preventDefault();
+            run();
+        }
+    });
 
 })(window, jQuery);
