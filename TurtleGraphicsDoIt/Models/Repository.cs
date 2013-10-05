@@ -32,8 +32,15 @@ namespace TurtleGraphicsDoIt.Models
 
         public void Add(Entity entity)
         {
-            _Context.AddObject(_TableName, entity);
-            _Context.SaveChanges();
+            var exists = _Context
+                .CreateQuery<TableEntity>(_TableName)
+                .Where(e => e.PartitionKey == entity.PartitionKey && e.RowKey == entity.RowKey)
+                .FirstOrDefault();
+            if (exists == null)
+            {
+                _Context.AddObject(_TableName, entity);
+                _Context.SaveChanges();
+            }
         }
 
         public Entity Find(CodeId codeid)
