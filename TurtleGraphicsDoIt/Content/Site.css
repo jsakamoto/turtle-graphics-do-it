@@ -4,6 +4,7 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    background-repeat: no-repeat;
 }
 
 body, h1, h2, h3, h4, header {
@@ -24,7 +25,6 @@ h1 {
 
 header h1 {
     color: #fff;
-    background-repeat: no-repeat;
     background-image: url(images/header-mark.png);
     min-height: 32px;
     padding-left: 40px;
@@ -53,7 +53,6 @@ a {
     width: 19px;
     height: 18px;
     position: absolute;
-    background-repeat: no-repeat;
     background-image: url(images/cursor.png);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -74,13 +73,13 @@ canvas, .screen-pane img, .thumbnail {
 }
 
 .screen-pane {
-    float: left;
+    display: inline-block;
     margin: 0 1em 1em 0;
 }
 
 #code-area {
     min-width: 30em;
-    min-height: 20em;
+    min-height: 22em;
     font-family: Consolas, monospace;
     margin: 0 1em 1em 0;
 }
@@ -102,7 +101,6 @@ pre#code-area {
 }
 
 .actions a, nav a {
-    background-repeat: no-repeat;
     background-position: 8px center;
     padding-left: 38px;
 }
@@ -137,4 +135,52 @@ pre#code-area {
 .published-list img {
     width: 120px;
     height: 120px;
+}
+
+/* footer */
+footer {
+    font-size: 80%;
+    clear: both;
+    padding: 1em 0 0 0;
+    margin: 4em 1.5em 1em 1.5em;
+    border-top: solid 1px #ccc;
+}
+
+    footer .part {
+        display: inline-block;
+        margin: 0em 1em 1em 0;
+    }
+
+    footer a {
+        color: #888;
+        padding-left: 20px;
+        display: block;
+        margin: 0 0 2px 0;
+    }
+
+        footer a:hover {
+            color: #000;
+        }
+
+.link-to-azure {
+    background-image: url(//www.windowsazure.com/favicon.ico);
+}
+
+.link-to-github {
+    background-image: url(//github.com/favicon.ico);
+}
+
+.link-to-glyphicons {
+    background-image: url(http://glyphicons.com/wp-content/themes/glyphicons/sk/public/favicon.ico);
+}
+
+.link-to-gameicons {
+    background-image: url(http://game-icons.net/favicon.ico);
+}
+
+.link-to-glyphicons, .link-to-github {
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    -webkit-background-size: contain;
+    background-size: contain;
 }
