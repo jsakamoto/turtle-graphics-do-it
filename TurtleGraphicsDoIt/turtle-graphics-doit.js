@@ -40,6 +40,20 @@
     context.heigt = parseInt(canvas.height);
     window.turtle = new TurtleClass(context);
 
+    // Hack to safety JavaScript Sand Box.
+    var sandboxArgs = [];
+    setTimeout(function () {
+        var include = ['window', 'Function', 'eval', 'ActiveXObject', 'XMLHttpRequest'];
+        var exclude = ['turtle', 'console', 'alert'];
+        for (var prop in window) {
+            if (include.indexOf(prop) != -1) continue;
+            if (exclude.indexOf(prop) != -1) continue;
+            sandboxArgs.push(prop);
+        }
+        for (var i = 0; i < include.length; i++) sandboxArgs.push(include[i]);
+        sandboxArgs = sandboxArgs.join(',');
+    }, 0);
+
     var run = function () {
         context.beginPath();
         context.clearRect(0, 0, context.width, context.heigt);
@@ -47,9 +61,12 @@
         window.turtle.reset();
 
         var code = $('#code-area').val();
-        (function (window, $) {
-            eval(code);
-        })(null, null);
+        try {
+            Function(sandboxArgs, code).apply({}, []);
+        }
+        catch (e) {
+            alert(e);
+        }
     }
 
     $('#btn-run').click(function (e) {
