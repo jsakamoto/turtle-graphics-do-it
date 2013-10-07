@@ -184,3 +184,7 @@ footer {
     -webkit-background-size: contain;
     background-size: contain;
 }
+
+.detail-of-published footer .social-buttons {
+    display: none;
+}
