@@ -14,9 +14,20 @@ namespace TurtleGraphicsDoIt.Models
     {
         protected const string _TableName = "codes";
 
-        protected CloudTable _TableRef;
+        private CloudTable _TableRef;
+
+        protected CloudTable TableRef {
+            get {
+                if (_TableRef == null) _TableRef = GetTableRef();
+                return _TableRef;
+            }
+        }
 
         public Repository()
+        {
+        }
+
+        private CloudTable GetTableRef()
         {
             var appSettings = ConfigurationManager.AppSettings;
 
@@ -25,31 +36,33 @@ namespace TurtleGraphicsDoIt.Models
                 appSettings["StorageAccount.Key"]);
             var storageAccount = new CloudStorageAccount(credentials, useHttps: true);
             var tableClient = storageAccount.CreateCloudTableClient();
-            _TableRef = tableClient.GetTableReference(_TableName);
-            _TableRef.CreateIfNotExists();
+            var tableRef = tableClient.GetTableReference(_TableName);
+            tableRef.CreateIfNotExists();
+
+            return tableRef;
         }
 
         public void Add(Entity entity)
         {
             var op = TableOperation.Retrieve(entity.PartitionKey, entity.RowKey);
-            var result = _TableRef.Execute(op);
+            var result = TableRef.Execute(op);
             if (result.Result == null)
             {
-                _TableRef.Execute(TableOperation.Insert(entity));
+                TableRef.Execute(TableOperation.Insert(entity));
             }
         }
 
         public Entity Find(CodeId codeid)
         {
             var op = TableOperation.Retrieve<Entity>(codeid.PartitionKey, codeid.RowKey);
-            var result = _TableRef.Execute(op);
+            var result = TableRef.Execute(op);
             return result.Result as Entity;
         }
 
         public IEnumerable<string> GetAllRowKeys()
         {
             var query = new TableQuery().Select(new string[] { });
-            return _TableRef
+            return TableRef
                 .ExecuteQuery(query)
                 .Select(a => a.RowKey);
         }

@@ -32,7 +32,7 @@
             }
         },
         rotate: function (degree) {
-            var newVal = 'rotate('+(degree.toString()) + 'deg)';
+            var newVal = 'rotate(' + (degree.toString()) + 'deg)';
             this.css({
                 '-moz-transform': newVal,
                 '-ms-transform': newVal,
@@ -86,6 +86,7 @@
         context.clearRect(0, 0, context.width, context.heigt);
         context.closePath();
         window.turtle.reset();
+        window.turtle.setSpeed(parseInt($('#speed').val()));
 
         var code = $('#code-area').val();
         try {
