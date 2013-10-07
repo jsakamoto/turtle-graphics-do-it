@@ -24,6 +24,10 @@ h1 {
 
 header h1 {
     color: #fff;
+    background-repeat: no-repeat;
+    background-image: url(images/header-mark.png);
+    min-height: 32px;
+    padding-left: 40px;
 }
 
 header nav {

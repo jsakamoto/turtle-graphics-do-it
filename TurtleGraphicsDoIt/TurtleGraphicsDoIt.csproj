@@ -157,6 +157,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\Images\clone.png" />
+    <Content Include="Content\Images\favicon.ico" />
+    <Content Include="Content\Images\favicon.png" />
+    <Content Include="Content\Images\header-mark.png" />
     <Content Include="Content\Images\list.png" />
     <Content Include="Content\Images\ogpimage.png" />
     <Content Include="Content\Images\play.png" />
