@@ -9,11 +9,14 @@
         // state.
         var x, y, degree, isPenDown;
 
+        this.onupdate = function () { };
+
         this.reset = function () {
             x = context.width / 2.0;
             y = context.heigt / 2.0;
             degree = 270.0;
             isPenDown = true;
+            this.onupdate();
         };
         this.reset();
 
@@ -25,10 +28,12 @@
             y += Math.sin(rad) * distance;
             fn.apply(context, [x, y]);
             context.stroke();
+            this.onupdate();
         };
 
         this.turn = function (delta) {
             degree = (degree + delta) % 360.0;
+            this.onupdate();
         }
 
         this.penUp = function () {
@@ -36,6 +41,13 @@
         }
         this.penDown = function () {
             isPenDown = true;
+        }
+
+        this.getPosition = function () {
+            return { "x": x, "y": y };
+        }
+        this.getRotate = function () {
+            return degree;
         }
     };
     exports.TurtleClass = TurtleClass;

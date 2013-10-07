@@ -30,15 +30,42 @@
                 }
                 return { begin: begin, end: end };
             }
+        },
+        rotate: function (degree) {
+            var newVal = 'rotate('+(degree.toString()) + 'deg)';
+            this.css({
+                '-moz-transform': newVal,
+                '-ms-transform': newVal,
+                '-o-transform': newVal,
+                '-webkit-transform': newVal,
+                'transform': newVal
+            });
+            return this;
         }
     });
 
-
-    var canvas = window.document.getElementsByTagName('canvas')[0];
+    var $canvas = $('canvas');
+    var canvas = $canvas[0];
     var context = canvas.getContext('2d');
     context.width = parseInt(canvas.width);
     context.heigt = parseInt(canvas.height);
     window.turtle = new TurtleClass(context);
+
+    var cursor = $('#cursor');
+    var cursorSize = { 'width': cursor.width(), 'height': cursor.height() };
+    var canvasPos = $canvas.position();
+    var updateCursor = function () {
+        var pos = window.turtle.getPosition();
+        var rotate = window.turtle.getRotate();
+        cursor.css({
+            'left': pos.x + canvasPos.left - (cursorSize.width / 2),
+            'top': pos.y + canvasPos.top - (cursorSize.height / 2)
+        })
+        .rotate(rotate + 90);
+    }
+    window.turtle.onupdate = updateCursor;
+    updateCursor();
+    cursor.addClass('ready');
 
     // Hack to safety JavaScript Sand Box.
     var sandboxArgs = [];

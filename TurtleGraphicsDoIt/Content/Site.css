@@ -49,6 +49,26 @@ a {
 }
 
 /* Index */
+#cursor {
+    width: 19px;
+    height: 18px;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-image: url(images/cursor.png);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+    #cursor.ready {
+        opacity: 1;
+    }
+
 canvas, .screen-pane img, .thumbnail {
     box-shadow: 1px 1px 6px #444;
 }
