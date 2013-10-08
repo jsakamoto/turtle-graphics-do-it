@@ -50,6 +50,12 @@ namespace TurtleGraphicsDoIt.Models
             {
                 TableRef.Execute(TableOperation.Insert(entity));
             }
+            else
+            {
+                entity.ETag = "*";
+                var updateOp = TableOperation.Replace(entity);
+                TableRef.Execute(updateOp);
+            }
         }
 
         public Entity Find(CodeId codeid)
@@ -64,6 +70,7 @@ namespace TurtleGraphicsDoIt.Models
             var query = new TableQuery().Select(new string[] { });
             return TableRef
                 .ExecuteQuery(query)
+                .OrderByDescending(a => a.Timestamp)
                 .Select(a => a.RowKey);
         }
 
