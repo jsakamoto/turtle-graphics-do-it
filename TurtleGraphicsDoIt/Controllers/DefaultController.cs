@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -41,13 +42,19 @@ namespace TurtleGraphicsDoIt.Controllers
         {
             // Save to storage and redirect to '/Published/{id}'.
             var codeid = CodeId.FromCode(model.Code);
-            var graphbin = Convert.FromBase64String(model.GraphicDataURL.Split(',').Last());
 
+            const int thumbnailSize = 120;
+            var graphbin = Convert.FromBase64String(model.GraphicDataURL.Split(',').Last());
             var thumbbin = default(byte[]);
             using(var ms1 = new MemoryStream(graphbin)) 
             using(var ms2 = new MemoryStream()){
                 var png = Image.FromStream(ms1);
-                var thumbnail = png.GetThumbnailImage(120, 120, null, IntPtr.Zero);
+                var thumbnail = new Bitmap(thumbnailSize, thumbnailSize);
+                using (var g = Graphics.FromImage(thumbnail))
+                {
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(png, 0, 0, 120, 120);
+                }
                 thumbnail.Save(ms2, ImageFormat.Png);
                 thumbbin = ms2.GetBuffer();
             }
