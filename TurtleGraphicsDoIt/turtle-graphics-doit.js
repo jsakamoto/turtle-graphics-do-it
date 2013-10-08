@@ -81,12 +81,12 @@
         sandboxArgs = sandboxArgs.join(',');
     }, 0);
 
-    var run = function () {
+    var run = function (speed) {
         context.beginPath();
         context.clearRect(0, 0, context.width, context.heigt);
         context.closePath();
         window.turtle.reset();
-        window.turtle.setSpeed(parseInt($('#speed').val()));
+        window.turtle.setSpeed(speed !== undefined ? speed : parseInt($('#speed').val()));
 
         var code = $('#code-area').val();
         try {
@@ -105,7 +105,7 @@
     $('#btn-publish').click(function (e) {
         e.preventDefault();
         if (confirm('Sure?') == false) return;
-        run();
+        run(0);
         $('#graphic-data-URL').val(canvas.toDataURL());
         $('form').submit();
     });
