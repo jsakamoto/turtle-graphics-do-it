@@ -54,17 +54,15 @@
     var cursor = $('#cursor');
     var cursorSize = { 'width': cursor.width(), 'height': cursor.height() };
     var canvasPos = $canvas.position();
-    var updateCursor = function () {
-        var pos = window.turtle.getPosition();
-        var rotate = window.turtle.getRotate();
+    var updateCursor = function (state) {
         cursor.css({
-            'left': pos.x + canvasPos.left - (cursorSize.width / 2),
-            'top': pos.y + canvasPos.top - (cursorSize.height / 2)
+            'left': state.x + canvasPos.left - (cursorSize.width / 2),
+            'top': state.y + canvasPos.top - (cursorSize.height / 2)
         })
-        .rotate(rotate + 90);
+        .rotate(state.degree + 90);
     }
     window.turtle.onupdate = updateCursor;
-    updateCursor();
+    window.turtle.reset();
     cursor.addClass('ready');
 
     // Hack to safety JavaScript Sand Box.

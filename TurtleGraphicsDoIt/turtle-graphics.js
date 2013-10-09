@@ -9,7 +9,7 @@
         var me = this;
 
         // state.
-        var x, y, degree, isPenDown, speed = 0;
+        var state = { x: 0, y: 0, degree: 270, isPenDown: true, speed: 0 };
 
         // runner
         function Runner(turtle) {
@@ -28,10 +28,10 @@
             }
 
             this.registerToQueue = function (fn) {
-                if (speed == 0) fn.apply(turtle, []);
+                if (state.speed == 0) fn.apply(turtle, []);
                 else {
                     queue.push(fn);
-                    if (timerId === null) timerId = window.setInterval(run, speed - 1);
+                    if (timerId === null) timerId = window.setInterval(run, state.speed - 1);
                 }
             };
             this.stop = function () {
@@ -50,52 +50,44 @@
         this.onupdate = function () { };
 
         this.reset = function () {
-            x = context.width / 2.0;
-            y = context.heigt / 2.0;
-            degree = 270.0;
-            isPenDown = true;
+            state.x = context.width / 2.0;
+            state.y = context.heigt / 2.0;
+            state.degree = 270.0;
+            state.isPenDown = true;
             runner.reset();
-            this.onupdate();
+            this.onupdate(state);
         };
         this.reset();
 
         this.move = function (distance) {
             runner.registerToQueue(function () {
-                var fn = isPenDown ? context.lineTo : context.moveTo;
-                context.moveTo(x, y);
-                var rad = toRad(degree);
-                x += Math.cos(rad) * distance;
-                y += Math.sin(rad) * distance;
-                fn.apply(context, [x, y]);
+                var fn = state.isPenDown ? context.lineTo : context.moveTo;
+                context.moveTo(state.x, state.y);
+                var rad = toRad(state.degree);
+                state.x += Math.cos(rad) * distance;
+                state.y += Math.sin(rad) * distance;
+                fn.apply(context, [state.x, state.y]);
                 context.stroke();
-                this.onupdate();
+                this.onupdate(state);
             });
         };
 
         this.turn = function (delta) {
             runner.registerToQueue(function () {
-                degree = (degree + delta) % 360.0;
-                this.onupdate();
+                state.degree = (state.degree + delta) % 360.0;
+                this.onupdate(state);
             });
         }
 
         this.penUp = function () {
-            runner.registerToQueue(function () { isPenDown = false; });
+            runner.registerToQueue(function () { state.isPenDown = false; });
         }
         this.penDown = function () {
-            runner.registerToQueue(function () { isPenDown = true; });
-        }
-
-        this.getPosition = function () {
-            return { "x": x, "y": y };
-        }
-        this.getRotate = function () {
-            return degree;
+            runner.registerToQueue(function () { state.isPenDown = true; });
         }
 
         this.setSpeed = function (msec) {
-            speed = msec;
-            console.log(speed);
+            state.speed = msec;
         }
     };
     exports.TurtleClass = TurtleClass;
