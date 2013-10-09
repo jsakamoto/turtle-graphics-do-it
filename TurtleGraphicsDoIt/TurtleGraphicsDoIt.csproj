@@ -158,6 +158,8 @@
     <Content Include="favicon.png" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\html5-appcache.js" />
+    <Content Include="Scripts\html5-detectoffline.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <None Include="Scripts\_references.js" />
@@ -179,6 +181,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Published\Detail.cshtml" />
     <Content Include="Views\Published\Index.cshtml" />
+    <Content Include="Views\Default\AppManifest.cshtml" />
+    <Content Include="Views\Default\AppManifest-header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

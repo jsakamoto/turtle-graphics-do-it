@@ -188,3 +188,9 @@ footer {
 .detail-of-published footer .social-buttons {
     display: none;
 }
+
+/* Offline */
+.html5-offline .action-publish,
+.html5-offline .action-view-published {
+    display: none;
+}

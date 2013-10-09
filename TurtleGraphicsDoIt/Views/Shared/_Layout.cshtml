@@ -3,7 +3,7 @@
     ViewBag.OgpUrl = ViewBag.OgpUrl ?? Url.AppUrl();
     ViewBag.OgpImageUrl = ViewBag.OgpImageUrl ?? Url.AppUrl() + "/Content/images/ogpimage.png";
 }<!DOCTYPE html>
-<html>
+<html manifest="@ViewBag.AppManifest">
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -80,6 +80,7 @@
     </footer>
 
     <script src="~/Scripts/jquery-2.0.3.min.js"></script>
+    <script src="~/Scripts/html5-detectoffline.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

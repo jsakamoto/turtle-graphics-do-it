@@ -1,6 +1,7 @@
 ﻿@model TurtleGraphicsDoIt.Models.ViewModel
 @{
     ViewBag.Title = "Home";
+    ViewBag.AppManifest = Model == null ? "cache.manifest" : default(string);
     var code = Model != null ? Model.Code : "";
 }
 
@@ -31,6 +32,7 @@
 </div>
 
 @section Scripts {
+    <script src="~/Scripts/html5-appcache.js"></script>
     <script src="~/Scripts/sandbox.js"></script>
     <script src="~/turtle-graphics.js"></script>
     <script src="~/turtle-graphics-doit.js"></script>

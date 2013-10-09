@@ -72,6 +72,11 @@ namespace TurtleGraphicsDoIt.Controllers
             return RedirectToAction("Detail", "Published", new { id = codeid.RowKey });
         }
 
+        public ActionResult AppManifest()
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
