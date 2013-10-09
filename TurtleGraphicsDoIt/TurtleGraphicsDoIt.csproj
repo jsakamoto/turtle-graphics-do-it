@@ -161,6 +161,7 @@
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\sandbox.js" />
     <Content Include="turtle-graphics-doit.js" />
     <Content Include="turtle-graphics.js" />
     <Content Include="Web.config">

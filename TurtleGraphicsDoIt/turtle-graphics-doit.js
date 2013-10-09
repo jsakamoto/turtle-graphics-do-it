@@ -66,18 +66,10 @@
     cursor.addClass('ready');
 
     // Hack to safety JavaScript Sand Box.
-    var sandboxArgs = [];
-    setTimeout(function () {
-        var include = ['window', 'Function', 'eval', 'ActiveXObject', 'XMLHttpRequest'];
-        var exclude = ['turtle', 'console', 'alert'];
-        for (var prop in window) {
-            if (include.indexOf(prop) != -1) continue;
-            if (exclude.indexOf(prop) != -1) continue;
-            sandboxArgs.push(prop);
-        }
-        for (var i = 0; i < include.length; i++) sandboxArgs.push(include[i]);
-        sandboxArgs = sandboxArgs.join(',');
-    }, 0);
+    var sandBox = null;
+    window.setTimeout(function () {
+        sandBox = new SandBox(['turtle', 'console', 'alert']);
+    }, 100);
 
     var run = function (speed) {
         context.beginPath();
@@ -88,7 +80,7 @@
 
         var code = $('#code-area').val();
         try {
-            Function(sandboxArgs, code).apply({}, []);
+            sandBox.Run(code);
         }
         catch (e) {
             alert(e);
