@@ -4,7 +4,7 @@
         return degree * Math.PI / 180;
     };
 
-    function TurtleClass(context) {
+    function TurtleClass(context, width, height) {
 
         var me = this;
 
@@ -50,8 +50,13 @@
         this.onupdate = function () { };
 
         this.reset = function () {
-            state.x = context.width / 2.0;
-            state.y = context.heigt / 2.0;
+
+            context.beginPath();
+            context.clearRect(0, 0, width, height);
+            context.closePath();
+
+            state.x = width / 2.0;
+            state.y = height / 2.0;
             state.degree = 270.0;
             state.isPenDown = true;
             runner.reset();

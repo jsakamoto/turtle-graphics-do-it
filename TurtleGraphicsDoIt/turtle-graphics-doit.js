@@ -47,9 +47,9 @@
     var $canvas = $('canvas');
     var canvas = $canvas[0];
     var context = canvas.getContext('2d');
-    context.width = parseInt(canvas.width);
-    context.heigt = parseInt(canvas.height);
-    window.turtle = new TurtleClass(context);
+    var width = parseInt(canvas.width);
+    var height = parseInt(canvas.height);
+    window.turtle = new TurtleClass(context, width, height);
 
     var cursor = $('#cursor');
     var cursorSize = { 'width': cursor.width(), 'height': cursor.height() };
@@ -72,9 +72,6 @@
     }, 100);
 
     var run = function (speed) {
-        context.beginPath();
-        context.clearRect(0, 0, context.width, context.heigt);
-        context.closePath();
         window.turtle.reset();
         window.turtle.setSpeed(speed !== undefined ? speed : parseInt($('#speed').val()));
 
