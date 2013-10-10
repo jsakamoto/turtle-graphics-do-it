@@ -5,8 +5,6 @@
         window.location.reload();
     });
     if (window.navigator.onLine) {
-        if (cache.status == cache.UPDATEREADY) {
-            cache.update();
-        }
+        try { cache.update(); } catch (_) { }
     }
 })();

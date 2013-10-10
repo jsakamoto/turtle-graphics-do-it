@@ -31,11 +31,6 @@
     </div>
 </div>
 
-@section Scripts {
-    <script src="~/Scripts/html5-appcache.js"></script>
-    <script src="~/Scripts/sandbox.js"></script>
-    <script src="~/turtle-graphics.js"></script>
-    <script src="~/turtle-graphics-doit.js"></script>
-}
+@section Scripts { @Scripts.Render("~/bundles/default-index") }
 
 

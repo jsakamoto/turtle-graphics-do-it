@@ -7,8 +7,6 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>@Localize.SiteName - @ViewBag.Title</title>
-    <link href="~/Content/Site.css" rel="stylesheet" />
     <meta name="twitter:card" content="summary">
     <meta property="og:title" content="@Localize.SiteName" />
     <meta property="og:description" content="@Localize.Description" />
@@ -18,7 +16,8 @@
     <meta name="description" content="@Localize.Description" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="~/favicon.png" rel="icon" type="image/png" />
-
+    <title>@Localize.SiteName - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
     @RenderSection("Head", required: false)
 </head>
 <body class="@ViewBag.BodyCssClass">
@@ -79,8 +78,7 @@
         </div>
     </footer>
 
-    <script src="~/Scripts/jquery-2.0.3.min.js"></script>
-    <script src="~/Scripts/html5-detectoffline.js"></script>
+    @Scripts.Render("~/bundles/commons")
     @RenderSection("Scripts", required: false)
 </body>
 </html>
