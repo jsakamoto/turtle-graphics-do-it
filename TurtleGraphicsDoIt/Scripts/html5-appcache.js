@@ -1,5 +1,6 @@
 ﻿(function () {
-    var cache = window.applicationCache;
+    var cache = window.applicationCache || { addEventListener: function () { } };
+
     cache.addEventListener("updateready", function () {
         cache.swapCache();
         window.location.reload();
