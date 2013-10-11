@@ -1,7 +1,7 @@
 ﻿@model TurtleGraphicsDoIt.Models.ViewModel
 @{
     ViewBag.Title = "Home";
-    ViewBag.AppManifest = Model == null ? "cache.manifest" : default(string);
+    ViewBag.AppManifest = "cache.manifest";
     var code = Model != null ? Model.Code : "";
 }
 

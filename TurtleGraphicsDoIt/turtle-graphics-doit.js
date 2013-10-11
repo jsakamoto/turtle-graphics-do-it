@@ -80,7 +80,7 @@
             sandBox.Run(code);
         }
         catch (e) {
-            alert(e);
+            alert('ERROR: ' + e);
         }
     }
 
