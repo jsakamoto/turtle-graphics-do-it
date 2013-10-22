@@ -11,6 +11,11 @@ URL
 [http://turtlegraphics-doit.azurewebsites.net/](http://turtlegraphics-doit.azurewebsites.net/)  
 (or shorten: [http://goo.gl/Ku6gPC](http://goo.gl/Ku6gPC) )
 
+"Turtle Graphics Do It" is "HTML5 Offline mode" ready, so you can play the Turtle Graphics at airplane mode if you had opened the site at once.
+
+You can also download "Offline Package" zip file [here](https://github.com/jsakamoto/turtle-graphics-do-it/releases/tag/OfflinePackage-1.0.0).  
+This package has no need connection to network.
+
 How to control the turtle?
 ---------------------------
 
