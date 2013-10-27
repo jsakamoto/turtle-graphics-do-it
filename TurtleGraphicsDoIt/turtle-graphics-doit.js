@@ -50,6 +50,7 @@
     var width = parseInt(canvas.width);
     var height = parseInt(canvas.height);
     window.turtle = new TurtleClass(context, width, height);
+    window.kame = window.turtle;
 
     var cursor = $('#cursor');
     var cursorSize = { 'width': cursor.width(), 'height': cursor.height() };
@@ -68,7 +69,7 @@
     // Hack to safety JavaScript Sand Box.
     var sandBox = null;
     window.setTimeout(function () {
-        sandBox = new SandBox(['turtle', 'console', 'alert']);
+        sandBox = new SandBox(['turtle', 'kame', 'console', 'alert']);
     }, 100);
 
     var run = function (speed) {
