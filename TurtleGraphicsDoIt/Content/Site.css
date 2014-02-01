@@ -194,3 +194,9 @@ footer {
 .html5-offline .action-view-published {
     display: none;
 }
+
+/* Local Debug */
+.debug.html5-offline .action-publish,
+.debug.html5-offline .action-view-published {
+    display: inline-block;
+}

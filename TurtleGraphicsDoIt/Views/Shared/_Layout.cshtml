@@ -1,7 +1,12 @@
-﻿@using TurtleGraphicsDoIt
+﻿@using System.Configuration
+@using System.Web.Configuration
+@using TurtleGraphicsDoIt
 @{
     ViewBag.OgpUrl = ViewBag.OgpUrl ?? Url.AppUrl();
     ViewBag.OgpImageUrl = ViewBag.OgpImageUrl ?? Url.AppUrl() + "/Content/images/ogpimage.png";
+
+    var compilationSection = ConfigurationManager.GetSection("system.web/compilation") as CompilationSection;
+    var isDebug = compilationSection.Debug;
 }<!DOCTYPE html>
 <html manifest="@ViewBag.AppManifest">
 <head>
@@ -20,7 +25,7 @@
     @Styles.Render("~/Content/css")
     @RenderSection("Head", required: false)
 </head>
-<body class="@ViewBag.BodyCssClass">
+<body class="@ViewBag.BodyCssClass @(isDebug ? "debug" : "")">
     <div id="fb-root"></div>
     <script>
         (function (d, s, id) {
