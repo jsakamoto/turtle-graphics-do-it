@@ -12,5 +12,9 @@ namespace TurtleGraphicsDoIt.Models
         public string Code { get; set; }
 
         public string GraphicDataURL { get; set; }
+
+        public string PrevRowKey { get; set; }
+
+        public string NextRowKey { get; set; }
     }
 }

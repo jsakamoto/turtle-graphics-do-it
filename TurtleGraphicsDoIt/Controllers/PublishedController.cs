@@ -28,11 +28,18 @@ namespace TurtleGraphicsDoIt.Controllers
         public ActionResult Detail(string id)
         {
             var codeid = CodeId.FromRowKey(id);
+            
+            var allRowKeys = this.Repository.GetAllRowKeys().ToArray(); // Sorted by date time desc.
+            var prevRowKey = allRowKeys.Reverse().SkipWhile(rowKey => rowKey != codeid.RowKey).Skip(1).FirstOrDefault() ?? "";
+            var nextRowKey = allRowKeys.SkipWhile(rowKey => rowKey != codeid.RowKey).Skip(1).FirstOrDefault() ?? "";
+
             var entity = this.Repository.Find(codeid);
             var model = new ViewModel
             {
                 Code = Encoding.UTF8.GetString(entity.CodeAsBytes),
-                GraphicDataURL = "data:image/jpeg;base64," + Convert.ToBase64String(entity.Graphic)
+                GraphicDataURL = "data:image/jpeg;base64," + Convert.ToBase64String(entity.Graphic),
+                PrevRowKey = prevRowKey,
+                NextRowKey = nextRowKey
             };
             return View(model);
         }

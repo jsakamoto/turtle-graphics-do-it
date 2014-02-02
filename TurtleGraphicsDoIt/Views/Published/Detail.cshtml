@@ -6,19 +6,34 @@
     ViewBag.OgpUrl = Request.Url.AbsoluteUri;
     ViewBag.OgpImageUrl = Url.AppUrl() + Url.Action("Thumbnail", new { id = rowKey });
     ViewBag.BodyCssClass = "detail-of-published";
+
+    var prevUrl = Model.PrevRowKey != "" ? Url.Action("Detail", new { id = Model.PrevRowKey }) : null;
+    var nextUrl = Model.NextRowKey != "" ? Url.Action("Detail", new { id = Model.NextRowKey }) : null;
+}
+@section Head {
+    @if (prevUrl != null)
+    {
+        <link rel="prev" href="@prevUrl" />
+    }
+    @if (nextUrl != null)
+    {
+        <link rel="next" href="@nextUrl" />
+    }
 }
 <h2>Published</h2>
 
 <div class="screen-pane">
+    <a href="@prevUrl" class="lnk-siblings prev @(prevUrl == null ? "none" : "")" title="previous graphic"></a>
     <img src="@Model.GraphicDataURL" alt="graphic" />
+    <a href="@nextUrl" class="lnk-siblings next @(nextUrl == null ? "none" : "")" title="next graphic"></a>
 </div>
 
 <div class="editor-pane">
     <div class="social-buttons">
-        
+
         <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="tgdoit">Tweet</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        
+        <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+
         <div class="fb-like" data-href="@Request.Url.AbsoluteUri" data-width="90" data-height="20" data-colorscheme="light" data-layout="button_count" data-action="like" data-show-faces="false" data-send="false"></div>
 
     </div>

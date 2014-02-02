@@ -189,6 +189,30 @@ footer {
     display: none;
 }
 
+.detail-of-published .lnk-siblings {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    opacity: 0.4;
+    margin-bottom: 172px;
+}
+
+    .detail-of-published .lnk-siblings:hover {
+        opacity: 1.0;
+    }
+
+    .detail-of-published .lnk-siblings.none {
+        visibility: hidden;
+    }
+
+    .detail-of-published .lnk-siblings.prev {
+        background-image: url(Images/prev.png);
+    }
+
+    .detail-of-published .lnk-siblings.next {
+        background-image: url(Images/next.png);
+    }
+
 /* Offline */
 .html5-offline .action-publish,
 .html5-offline .action-view-published {
