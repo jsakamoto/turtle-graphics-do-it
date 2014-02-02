@@ -31,10 +31,7 @@ namespace TurtleGraphicsDoIt.Models
         {
             var appSettings = ConfigurationManager.AppSettings;
 
-            var credentials = new StorageCredentials(
-                appSettings["StorageAccount.Name"],
-                appSettings["StorageAccount.Key"]);
-            var storageAccount = new CloudStorageAccount(credentials, useHttps: true);
+            var storageAccount = CloudStorageAccount.Parse(appSettings["StorageAccount"] ?? "UseDevelopmentStorage=true");
             var tableClient = storageAccount.CreateCloudTableClient();
             var tableRef = tableClient.GetTableReference(_TableName);
             tableRef.CreateIfNotExists();
