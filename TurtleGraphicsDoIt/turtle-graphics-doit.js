@@ -52,6 +52,16 @@
     window.turtle = new TurtleClass(context, width, height);
     window.kame = window.turtle;
 
+    // color constants.
+    var colors = {
+        black: '#000',
+        red: '#f00',
+        green: '#080',
+        blue: '#00f',
+        yellow: '#cc0'
+    };
+    for (var colorName in colors) window[colorName] = colors[colorName];
+
     var cursor = $('#cursor');
     var cursorSize = { 'width': cursor.width(), 'height': cursor.height() };
     var canvasPos = $canvas.position();
@@ -69,7 +79,9 @@
     // Hack to safety JavaScript Sand Box.
     var sandBox = null;
     window.setTimeout(function () {
-        sandBox = new SandBox(['turtle', 'kame', 'console', 'alert']);
+        var allowKeywords = ['turtle', 'kame', 'console', 'alert'];
+        for (var colorName in colors) allowKeywords.push(colorName);
+        sandBox = new SandBox(allowKeywords);
     }, 100);
 
     var run = function (speed) {

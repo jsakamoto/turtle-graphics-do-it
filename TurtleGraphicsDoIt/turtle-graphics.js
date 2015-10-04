@@ -9,7 +9,7 @@
         var me = this;
 
         // state.
-        var state = { x: 0, y: 0, degree: 270, isPenDown: true, speed: 0 };
+        var state = { x: 0, y: 0, degree: 270, isPenDown: true, speed: 0, penColor: '#000' };
 
         // runner
         function Runner(turtle) {
@@ -59,6 +59,7 @@
             state.y = height / 2.0;
             state.degree = 270.0;
             state.isPenDown = true;
+            state.penColor = '#000';
             runner.reset();
             this.onupdate(state);
         };
@@ -67,6 +68,8 @@
         this.move = function (distance) {
             runner.registerToQueue(function () {
                 var fn = state.isPenDown ? context.lineTo : context.moveTo;
+                context.beginPath();
+                context.strokeStyle = state.penColor;
                 context.moveTo(state.x, state.y);
                 var rad = toRad(state.degree);
                 state.x += Math.cos(rad) * distance;
@@ -93,6 +96,13 @@
 
         this.setSpeed = function (msec) {
             state.speed = msec;
+        }
+
+        this.setColor = function (color) {
+            runner.registerToQueue(function () {
+                state.penColor = color;
+                this.onupdate(state);
+            });
         }
     };
     exports.TurtleClass = TurtleClass;
