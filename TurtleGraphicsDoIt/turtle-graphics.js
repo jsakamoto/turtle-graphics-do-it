@@ -9,7 +9,15 @@
         var me = this;
 
         // state.
-        var state = { x: 0, y: 0, degree: 270, isPenDown: true, speed: 0, penColor: '#000' };
+        var state = {
+            x: 0,
+            y: 0,
+            degree: 270,
+            isPenDown: true,
+            speed: 0,
+            penColor: '#000',
+            penWidth: 1.0
+        };
 
         // runner
         function Runner(turtle) {
@@ -60,6 +68,7 @@
             state.degree = 270.0;
             state.isPenDown = true;
             state.penColor = '#000';
+            state.penWidth = 1.0;
             runner.reset();
             this.onupdate(state);
         };
@@ -70,6 +79,8 @@
                 var fn = state.isPenDown ? context.lineTo : context.moveTo;
                 context.beginPath();
                 context.strokeStyle = state.penColor;
+                context.lineWidth = state.penWidth;
+                context.lineCap = 'round';
                 context.moveTo(state.x, state.y);
                 var rad = toRad(state.degree);
                 state.x += Math.cos(rad) * distance;
@@ -101,6 +112,13 @@
         this.setColor = function (color) {
             runner.registerToQueue(function () {
                 state.penColor = color;
+                this.onupdate(state);
+            });
+        }
+
+        this.setWidth = function (width) {
+            runner.registerToQueue(function () {
+                state.penWidth = Math.min(Math.max(1, parseFloat('' + width)), 100);
                 this.onupdate(state);
             });
         }
